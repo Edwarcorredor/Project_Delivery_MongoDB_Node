@@ -1,13 +1,10 @@
 async function getNextSequenceValue(db, sequenceName) {
     const sequenceDocument = await db.collection("counters").findOneAndUpdate(
-        { _id: sequenceName }, // Usar un objeto de filtro aquí
+        { _id: sequenceName }, 
         { $inc: { seq: 1 } },
-        { returnDocument: "after" } // Usar returnDocument en lugar de new
+        { returnDocument: "after" } 
     );
-
-    console.error(sequenceDocument);
-    
-    return sequenceDocument.value.seq; // Acceder al valor actualizado
+    return sequenceDocument.value.seq; 
 }
 
 export default getNextSequenceValue;
