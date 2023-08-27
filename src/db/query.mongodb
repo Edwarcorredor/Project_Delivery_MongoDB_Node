@@ -39,7 +39,7 @@ db.createCollection("repartidor", {
                     bsonType: "array",
                     description: "Coordenadas de la ubicación",
                     items: {
-                        bsonType: "double"
+                        bsonType: "number"
                     }
                 }                   
             }
@@ -80,7 +80,7 @@ db.createCollection("restaurante", {
                     bsonType: "array",
                     description: "Coordenadas de la ubicación",
                     items: {
-                        bsonType: "double"
+                        bsonType: "number"
                     }
                 }               
             }
@@ -215,6 +215,3 @@ db.counters.insertMany([
     { _id: "cliente", seq: 0 },
     { _id: "pedido", seq: 0 }
 ]);
-
-
-  
