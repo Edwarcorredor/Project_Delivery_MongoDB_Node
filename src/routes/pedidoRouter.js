@@ -1,13 +1,13 @@
 import { Router } from "express";
-import ControllerPedido from "../controllers/ControllerPedido.js";
+import ControllerCrud from "../controllers/ControllerCrud.js";
 
 const pedidoRouter = Router();
 
 pedidoRouter
             
-.get('/todos', ControllerPedido.getAll)
-.post('/uno/', ControllerPedido.setPedido)
-.put('/update/:id', ControllerPedido.updatePedido)
-.delete('/eliminar/:id', ControllerPedido.deletePedido);
+.get('/todos', ControllerCrud.getAll)
+.post('/uno/', ControllerCrud.setDocument)
+.put('/update/:id', ControllerCrud.updateDocument)
+.delete('/eliminar/:id', ControllerCrud.deleteDocument);
 
 export default pedidoRouter;
