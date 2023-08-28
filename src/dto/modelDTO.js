@@ -42,10 +42,19 @@ const pedidoSchema = z.object({
     estado_pedido: z.enum(["pendiente", "en_proceso", "entregado"])
 });
 
+// Esquema para user
+const userShema = z.object({
+    nombre_user: z.string(),
+    email_user: z.string().email(),
+    password_user: z.string(),
+    role_user: z.enum(["repartidor", "cliente", "vendedor"])
+});
+
 export {
     repartidorSchema,
     restauranteSchema,
     productoSchema,
     clienteSchema,
-    pedidoSchema
+    pedidoSchema,
+    userShema
 };
