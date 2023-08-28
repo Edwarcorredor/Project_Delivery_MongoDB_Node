@@ -206,12 +206,13 @@ db.createCollection("pedido", {
     }
 });
 
-
+use("rappi_campus");
 db.createCollection("counters");
 db.counters.insertMany([
     { _id: "repartidor", seq: 0 },
     { _id: "restaurante", seq: 0 },
     { _id: "producto", seq: 0 },
     { _id: "cliente", seq: 0 },
-    { _id: "pedido", seq: 0 }
+    { _id: "pedido", seq: 0 },
+    { _id: "user", seq: 0 }
 ]);
