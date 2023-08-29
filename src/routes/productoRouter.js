@@ -4,8 +4,8 @@ import passport from "passport";
 import { checkRoles } from "../middlewares/auth.middleware.js";
 
 const productoRouter = Router();
-productoRouter.use(passport.authenticate("jwt", { session: false }));
 productoRouter
+  .use(passport.authenticate("jwt", { session: false }))
   .get("/todos", checkRoles("cliente", "vendedor"), ControllerCrud.getAll)
   .post("/uno/", checkRoles("vendedor"), ControllerCrud.setDocument)
   .put("/update/:id", checkRoles("vendedor"), ControllerCrud.updateDocument)
