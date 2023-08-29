@@ -47,7 +47,7 @@ const userShema = z.object({
     nombre_user: z.string(),
     email_user: z.string().email(),
     password_user: z.string(),
-    role_user: z.enum(["repartidor", "cliente", "vendedor"])
+    role_user: z.enum(["repartidor", "cliente", "vendedor", "user"])
 });
 
 export {
