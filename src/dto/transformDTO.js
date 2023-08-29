@@ -29,6 +29,12 @@ const mapping = {
         productos_pedido: "productos",
         total_pedido: "total",
         estado_pedido: "estado"
+    },
+    user: {
+        nombre_user: "nombre",
+        email_user: "email",
+        password_user: "password",
+        role_user: "role"
     }
 
 }  
