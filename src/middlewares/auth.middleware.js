@@ -5,7 +5,9 @@ export const checkRoles = (...roles) => {
     const { role } = req.user;
     if (!roles.includes(role)) {
       return res.status(401).json({
-        msg: `el servicio requiere uno de estos roles: ${roles.join(", ")}`,
+        msg: `su rol es ${role} el servicio requiere uno de estos roles: ${roles.join(
+          ", "
+        )}`,
       });
     }
     next();
