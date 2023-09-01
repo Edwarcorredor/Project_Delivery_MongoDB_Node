@@ -1,218 +1,233 @@
 use("rappi_campus");
 
-// Esquema para repartidor
+// Esquema para cliente 🔥🔥
+db.createCollection("cliente", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "nombre", "telefono", "direccion", "email"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "ID del cliente",
+        },
+        nombre: {
+          bsonType: "string",
+          description: "Nombre del cliente",
+        },
+        telefono: {
+          bsonType: "string",
+          description: "Teléfono del cliente",
+        },
+        direccion: {
+          bsonType: "string",
+          description: "Dirección del cliente",
+        },
+        email: {
+          bsonType: "string",
+          description: "Correo electrónico del cliente",
+        },
+      },
+    },
+  },
+});
+
+// Esquema para repartidor 🔥🔥
 db.createCollection("repartidor", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: [
-                "_id",
-                "nombre",
-                "telefono",
-                "vehiculo",
-                "disponible",
-                "coordinates"
-            ],
-            properties: {
-                _id: {
-                    bsonType: "int",
-                    description: "ID del repartidor"
-                },
-                nombre: {
-                    bsonType: "string",
-                    description: "Nombre del repartidor"
-                },
-                telefono: {
-                    bsonType: "string",
-                    description: "Teléfono del repartidor"
-                },
-                vehiculo: {
-                    bsonType: "string",
-                    enum: ["bicicleta", "motocicleta", "automóvil"],
-                    description: "Tipo de vehículo del repartidor"
-                },
-                disponible: {
-                    bsonType: "bool",
-                    description: "Disponibilidad del repartidor"
-                },
-                coordinates: {
-                    bsonType: "array",
-                    description: "Coordenadas de la ubicación",
-                    items: {
-                        bsonType: "number"
-                    }
-                }                   
-            }
-        }
-    }
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [
+        "_id",
+        "nombre",
+        "telefono",
+        "vehiculo",
+        "disponible",
+        "coordinates",
+      ],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "ID del repartidor",
+        },
+        nombre: {
+          bsonType: "string",
+          description: "Nombre del repartidor",
+        },
+        telefono: {
+          bsonType: "string",
+          description: "Teléfono del repartidor",
+        },
+        vehiculo: {
+          bsonType: "string",
+          enum: ["bicicleta", "motocicleta", "automóvil"],
+          description: "Tipo de vehículo del repartidor",
+        },
+        disponible: {
+          bsonType: "bool",
+          description: "Disponibilidad del repartidor",
+        },
+        coordinates: {
+          bsonType: "array",
+          description: "Coordenadas de la ubicación",
+          items: {
+            bsonType: "number",
+          },
+        },
+      },
+    },
+  },
+});
+
+use("rappi_campus");
+db.createCollection("users", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["username", "email", "password"],
+      properties: {
+        username: {
+          bsonType: "string",
+          description: "Nombre de usuario",
+        },
+        email: {
+          bsonType: "string",
+          description: "Dirección de correo electrónico del usuario.",
+        },
+        password: {
+          bsonType: "string",
+          description: "Contraseña del usuario.",
+        },
+        coordinates: {
+          bsonType: "array",
+          description: "Coordenadas de la ubicación",
+          items: {
+            bsonType: "number",
+          },
+        },
+        role: {
+          bsonType: "string",
+          description: "Rol de usuario",
+        },
+      },
+    },
+  },
 });
 
 // Esquema para restaurante
 db.createCollection("restaurante", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: [
-                "_id",
-                "nombre",
-                "direccion",
-                "categoria",
-                "coordinates"
-            ],
-            properties: {
-                _id: {
-                    bsonType: "int",
-                    description: "ID del restaurante"
-                },
-                nombre: {
-                    bsonType: "string",
-                    description: "Nombre del restaurante"
-                },
-                direccion: {
-                    bsonType: "string",
-                    description: "Dirección del restaurante"
-                },
-                categoria: {
-                    bsonType: "string",
-                    description: "Categoría del restaurante"
-                },
-                coordinates: {
-                    bsonType: "array",
-                    description: "Coordenadas de la ubicación",
-                    items: {
-                        bsonType: "number"
-                    }
-                }               
-            }
-        }
-    }
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "nombre", "direccion", "categoria", "coordinates"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "ID del restaurante",
+        },
+        id_tendero: {
+          bsonType: "int",
+          description: "ID del tendero que atiende",
+        },
+        nombre: {
+          bsonType: "string",
+          description: "Nombre del restaurante",
+        },
+        direccion: {
+          bsonType: "string",
+          description: "Dirección del restaurante",
+        },
+        categoria: {
+          bsonType: "string",
+          description: "Categoría del restaurante",
+        },
+        coordinates: {
+          bsonType: "array",
+          description: "Coordenadas de la ubicación",
+          items: {
+            bsonType: "number",
+          },
+        },
+      },
+    },
+  },
 });
 
 // Esquema para producto
 db.createCollection("producto", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: [
-                "_id",
-                "nombre",
-                "descripcion",
-                "precio",
-                "restaurante"
-            ],
-            properties: {
-                _id: {
-                    bsonType: "int",
-                    description: "ID del producto"
-                },
-                nombre: {
-                    bsonType: "string",
-                    description: "Nombre del producto"
-                },
-                descripcion: {
-                    bsonType: "string",
-                    description: "Descripción del producto"
-                },
-                precio: {
-                    bsonType: "number",
-                    description: "Precio del producto"
-                },
-                restaurante: {
-                    bsonType: "int",
-                    description: "ID del restaurante asociado al producto"
-                }
-            }
-        }
-    }
-});
-
-// Esquema para cliente
-db.createCollection("cliente", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: [
-                "_id",
-                "nombre",
-                "telefono",
-                "direccion",
-                "email"
-            ],
-            properties: {
-                _id: {
-                    bsonType: "int",
-                    description: "ID del cliente"
-                },
-                nombre: {
-                    bsonType: "string",
-                    description: "Nombre del cliente"
-                },
-                telefono: {
-                    bsonType: "string",
-                    description: "Teléfono del cliente"
-                },
-                direccion: {
-                    bsonType: "string",
-                    description: "Dirección del cliente"
-                },
-                email: {
-                    bsonType: "string",
-                    description: "Correo electrónico del cliente"
-                }
-            }
-        }
-    }
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "nombre", "descripcion", "precio", "restaurante"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "ID del producto",
+        },
+        nombre: {
+          bsonType: "string",
+          description: "Nombre del producto",
+        },
+        descripcion: {
+          bsonType: "string",
+          description: "Descripción del producto",
+        },
+        precio: {
+          bsonType: "number",
+          description: "Precio del producto",
+        },
+        restaurante: {
+          bsonType: "int",
+          description: "ID del restaurante asociado al producto",
+        },
+      },
+    },
+  },
 });
 
 // Esquema para pedido
 db.createCollection("pedido", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: [
-                "_id",
-                "IdCliente",
-                "productos",
-                "total",
-                "estado"
-            ],
-            properties: {
-                _id: {
-                    bsonType: "int",
-                    description: "ID del pedido"
-                },
-                IdCliente: {
-                    bsonType: "int",
-                    description: "ID del cliente que hizo el pedido"
-                },
-                productos: {
-                    bsonType: "array",
-                    description: "Lista de productos en el pedido",
-                    items: {
-                        bsonType: "int"
-                    }
-                },
-                total: {
-                    bsonType: "number",
-                    description: "Total del pedido"
-                },
-                estado: {
-                    bsonType: "string",
-                    enum: ["pendiente", "en_proceso", "entregado"],
-                    description: "Estado actual del pedido"
-                }
-            }
-        }
-    }
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["_id", "productos", "total", "estado"],
+      properties: {
+        _id: {
+          bsonType: "int",
+          description: "ID del pedido",
+        },
+        id_cliente: {
+          bsonType: "int",
+          description: "ID del cliente que hizo el pedido",
+        },
+        productos: {
+          bsonType: "array",
+          description: "Lista de productos en el pedido",
+          items: {
+            bsonType: "int",
+          },
+        },
+        total: {
+          bsonType: "number",
+          description: "Total del pedido",
+        },
+        estado: {
+          bsonType: "string",
+          enum: ["pendiente", "en_proceso", "entregado"],
+          description: "Estado actual del pedido",
+        },
+      },
+    },
+  },
 });
 
 use("rappi_campus");
 db.createCollection("counters");
 db.counters.insertMany([
-    { _id: "repartidor", seq: 0 },
-    { _id: "restaurante", seq: 0 },
-    { _id: "producto", seq: 0 },
-    { _id: "cliente", seq: 0 },
-    { _id: "pedido", seq: 0 },
-    { _id: "user", seq: 0 }
+  { _id: "repartidor", seq: 0 },
+  { _id: "restaurante", seq: 0 },
+  { _id: "producto", seq: 0 },
+  { _id: "cliente", seq: 0 },
+  { _id: "pedido", seq: 0 },
+  { _id: "users", seq: 0 },
 ]);
