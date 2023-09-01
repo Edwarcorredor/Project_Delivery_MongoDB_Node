@@ -1,90 +1,11 @@
 use("rappi_campus");
 
-// Esquema para cliente 🔥🔥
-db.createCollection("cliente", {
-  validator: {
-    $jsonSchema: {
-      bsonType: "object",
-      required: ["_id", "nombre", "telefono", "direccion", "email"],
-      properties: {
-        _id: {
-          bsonType: "int",
-          description: "ID del cliente",
-        },
-        nombre: {
-          bsonType: "string",
-          description: "Nombre del cliente",
-        },
-        telefono: {
-          bsonType: "string",
-          description: "Teléfono del cliente",
-        },
-        direccion: {
-          bsonType: "string",
-          description: "Dirección del cliente",
-        },
-        email: {
-          bsonType: "string",
-          description: "Correo electrónico del cliente",
-        },
-      },
-    },
-  },
-});
-
-// Esquema para repartidor 🔥🔥
-db.createCollection("repartidor", {
-  validator: {
-    $jsonSchema: {
-      bsonType: "object",
-      required: [
-        "_id",
-        "nombre",
-        "telefono",
-        "vehiculo",
-        "disponible",
-        "coordinates",
-      ],
-      properties: {
-        _id: {
-          bsonType: "int",
-          description: "ID del repartidor",
-        },
-        nombre: {
-          bsonType: "string",
-          description: "Nombre del repartidor",
-        },
-        telefono: {
-          bsonType: "string",
-          description: "Teléfono del repartidor",
-        },
-        vehiculo: {
-          bsonType: "string",
-          enum: ["bicicleta", "motocicleta", "automóvil"],
-          description: "Tipo de vehículo del repartidor",
-        },
-        disponible: {
-          bsonType: "bool",
-          description: "Disponibilidad del repartidor",
-        },
-        coordinates: {
-          bsonType: "array",
-          description: "Coordenadas de la ubicación",
-          items: {
-            bsonType: "number",
-          },
-        },
-      },
-    },
-  },
-});
-
 
 db.createCollection("users", {
     validator: {
       $jsonSchema: {
         bsonType: "object",
-        required: ["username", "email", "password", "permisos"],
+        required: ["username", "email", "password", "permisos", "telefono", "role"],
         properties: {
           username: {
             bsonType: "string",
@@ -115,19 +36,16 @@ db.createCollection("users", {
                   bsonType: "string",
                   description: "Ingrese la version autorizada",
               }
-          }
+          },
+          telefono: {
+            bsonType: "string",
+            description: "Teléfono del repartidor",
+          },
         },
       },
     },
   });
   
-  
-  
-  
-   
-  
-  
-
 // Esquema para restaurante
 db.createCollection("restaurante", {
   validator: {
@@ -172,7 +90,7 @@ db.createCollection("producto", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["_id", "nombre", "descripcion", "precio", "restaurante"],
+      required: ["_id", "nombre", "descripcion", "precio", "restaurante", "stock"],
       properties: {
         _id: {
           bsonType: "int",
@@ -194,6 +112,10 @@ db.createCollection("producto", {
           bsonType: "int",
           description: "ID del restaurante asociado al producto",
         },
+        stock:{
+          bsonType: "int",
+          description: "Cantidad existente del producto en el restaurante"
+        }
       },
     },
   },
@@ -240,10 +162,8 @@ db.createCollection("pedido", {
 use("rappi_campus");
 db.createCollection("counters");
 db.counters.insertMany([
-  { _id: "repartidor", seq: 0 },
   { _id: "restaurante", seq: 0 },
   { _id: "producto", seq: 0 },
-  { _id: "cliente", seq: 0 },
   { _id: "pedido", seq: 0 },
   { _id: "users", seq: 0 },
 ]);

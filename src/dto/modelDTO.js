@@ -1,21 +1,6 @@
 import { z } from "zod";
 
-// Esquema para repartidor 🔥🔥
-const repartidorSchema = z.object({
-    nombre_repartidor: z.string().min(1),
-    telefono_repartidor: z.string().regex(/^\d+$/, "El teléfono debe contener solo números"),
-    vehiculo_repartidor: z.enum(["bicicleta", "motocicleta", "automóvil"]),
-    disponible_repartidor: z.boolean(),
-    coordinates_repartidor: z.array(z.number()).length(2)
-});
 
-// Esquema para cliente  🔥🔥
-const clienteSchema = z.object({
-    nombre_cliente: z.string().min(1),
-    telefono_cliente: z.string().regex(/^\d+$/, "El teléfono debe contener solo números"),
-    direccion_cliente: z.string().regex(/^[a-zA-Z0-9\s\#\-\.\,]+$/, "La dirección contiene caracteres inválidos"),
-    email_cliente: z.string().email()
-});
 
 // Esquema para restaurante
 const restauranteSchema = z.object({
@@ -48,15 +33,14 @@ const userShema = z.object({
     password_user: z.string(),
     role_user: z.enum(["repartidor", "cliente", "vendedor", "user"]),
     coordinates_user: z.array(z.number()).length(2),
-    permisos_user: z.array(z.string()).min(1, "Los permisos deben ser igual o mayor a uno")
+    permisos_user: z.array(z.string()).min(1, "Los permisos deben ser igual o mayor a uno"),
+    telefono_user: z.string().regex(/^\d+$/, "El teléfono debe contener solo números")
 });
 
 
 export {
-    repartidorSchema,
     restauranteSchema,
     productoSchema,
-    clienteSchema,
     pedidoSchema,
     userShema
 };

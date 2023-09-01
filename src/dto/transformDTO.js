@@ -1,11 +1,4 @@
 const mapping = {
-    repartidor:{
-        nombre_repartidor: "nombre",
-        telefono_repartidor: "telefono",
-        vehiculo_repartidor: "vehiculo",
-        disponible_repartidor: "disponible",
-        coordinates_repartidor: "coordinates"
-    },
     restaurante: {
         nombre_restaurante: "nombre",
         direccion_restaurante: "direccion",
@@ -19,12 +12,6 @@ const mapping = {
         precio_producto: "precio",
         restaurante_producto: "restaurante"
     },
-    cliente: {
-        nombre_cliente: "nombre",
-        telefono_cliente: "telefono",
-        direccion_cliente: "direccion",
-        email_cliente: "email"
-    },
     pedido: {
         cliente_pedido: "id_cliente",
         productos_pedido: "productos",
@@ -37,7 +24,8 @@ const mapping = {
         password_user: "password",
         role_user: "role",
         coordinates_user: "coordinates",
-        permisos_user: "permisos"
+        permisos_user: "permisos",
+        telefono_user: "telefono",
     }
 }  
     
