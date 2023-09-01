@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ControllerCrud from "../controllers/ControllerCrud.js";
+import ControllerCrud from "../controllers/ControllerUser.js";
 import passport from "passport";
 import { checkRoles } from "../middlewares/auth.middleware.js";
 import PedidosCrll from "../controllers/PedidosController.js";

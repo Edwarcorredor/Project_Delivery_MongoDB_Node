@@ -1,42 +1,28 @@
-import ModelCrud from "../models/ModelCrud.js";
-import {
-  repartidorSchema,
-  restauranteSchema,
-  productoSchema,
-  clienteSchema,
-  pedidoSchema,
-} from "../dto/modelDTO.js";
+import ModelUser from "../models/ModelUser.js";
+import {userShema} from "../dto/modelDTO.js";
 import funMapping from "../dto/transformDTO.js";
 
-const schemas = {
-  repartidor: repartidorSchema,
-  restaurante: restauranteSchema,
-  producto: productoSchema,
-  cliente: clienteSchema,
-  pedido: pedidoSchema,
-};
 
-class ControllerCrud {
-  static async getAll(req, res) {
-    res.json(await ModelCrud.getAll(req.baseUrl.slice(1, -1)));
+class ControllerUser {
+  static async getUser(req, res) {
+    const {sub} = req.user
+    res.json(await ModelUser.getUser(sub));
   }
 
-  static async setDocument(req, res) {
-    const validacion = schemas[req.baseUrl.slice(1, -1)].safeParse(req.body);
-    if (!validacion.success)
-      return res
-        .status(400)
-        .json({
-          message: validacion.error.errors.map(
-            (error) => `${error.path} - ${error.message}`
-          ),
-        });
-    const result = await ModelCrud.setDocument(
-      req.baseUrl.slice(1, -1),
-      funMapping(validacion.data, req.baseUrl.slice(1, -1))
-    );
-    if (result.status)
+  static async setUser(req, res) {
+    const validacion = userShema.safeParse(req.body);
+    if (!validacion.success) {
+      return res.status(400).json({
+        message: validacion.error.errors.map(
+          (error) => `${error.path} - ${error.message}`
+        ),
+      });
+    }
+    const transforUser = funMapping(validacion.data, "user");
+    const result = await ModelUser.setUser(transforUser);
+    if (!result.status){
       return res.status(result.status).json({ message: result.message });
+    } 
     res.json(result);
   }
 
@@ -73,4 +59,4 @@ class ControllerCrud {
   }
 }
 
-export default ControllerCrud;
+export default ControllerUser;
