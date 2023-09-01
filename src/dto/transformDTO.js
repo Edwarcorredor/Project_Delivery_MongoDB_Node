@@ -10,7 +10,8 @@ const mapping = {
         nombre_restaurante: "nombre",
         direccion_restaurante: "direccion",
         categoria_restaurante: "categoria",
-        coordinates_restaurante: "coordinates"
+        coordinates_restaurante: "coordinates",
+        id_tendero_restaurate: "id_tendero"
     },
     producto: {
         nombre_producto: "nombre",
@@ -25,18 +26,18 @@ const mapping = {
         email_cliente: "email"
     },
     pedido: {
-        cliente_pedido: "IdCliente",
+        cliente_pedido: "id_cliente",
         productos_pedido: "productos",
         total_pedido: "total",
         estado_pedido: "estado"
     },
     user: {
-        nombre_user: "nombre",
+        nombre_user: "username",
         email_user: "email",
         password_user: "password",
-        role_user: "role"
+        role_user: "role",
+        coordinates_user: "coordinates" 
     }
-
 }  
     
 
