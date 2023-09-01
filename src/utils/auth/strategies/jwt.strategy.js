@@ -7,7 +7,6 @@ const options = {
 };
 
 const jwtStrategy = new Strategy(options, (req, payload, done) => {
-  console.log(payload.permisos);
   if(!payload.permisos.includes(req.headers["accept-version"])){
     return done(null,false);
   }

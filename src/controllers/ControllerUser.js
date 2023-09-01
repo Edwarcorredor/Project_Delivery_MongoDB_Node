@@ -36,8 +36,8 @@ class ControllerUser {
         ),
       });
     }
-    const transforUser = funMapping(validacion.data, sub);
-    const result = await ModelUser.updateUser(transforUser, req);
+    const transforUser = funMapping(validacion.data, "user");
+    const result = await ModelUser.updateUser(transforUser, sub);
     if (!result.status){
       return res.status(result.status).json({ message: result.message });
     }
