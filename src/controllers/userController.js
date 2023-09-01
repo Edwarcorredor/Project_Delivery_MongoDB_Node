@@ -19,13 +19,13 @@ export const userPost = async (req = request, res = response) => {
       });
     }
     const transforUser = funMapping(validacion.data, "user");
-    const checkEmail = await User.findOne({email: transforUser.email})
-    if(checkEmail){
-        return res.status(401).json({ msg: "correo ya registrado"});
+    const checkEmail = await User.findOne({ email: transforUser.email });
+    if (checkEmail) {
+      return res.status(401).json({ msg: "correo ya registrado" });
     }
 
     const userInsert = await User.insertOne({
-      _id: await getNextSequenceValue(db, "user"),
+      _id: await getNextSequenceValue(db, "users"),
       ...transforUser,
       password: await hash(transforUser.password, 10),
     });
