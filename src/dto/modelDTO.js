@@ -47,8 +47,10 @@ const userShema = z.object({
     email_user: z.string().email(),
     password_user: z.string(),
     role_user: z.enum(["repartidor", "cliente", "vendedor", "user"]),
-    coordinates_user: z.array(z.number()).length(2)
+    coordinates_user: z.array(z.number()).length(2),
+    permisos_user: z.array(z.string()).min(1, "Los permisos deben ser igual o mayor a uno")
 });
+
 
 export {
     repartidorSchema,

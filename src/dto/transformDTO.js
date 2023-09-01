@@ -36,7 +36,8 @@ const mapping = {
         email_user: "email",
         password_user: "password",
         role_user: "role",
-        coordinates_user: "coordinates" 
+        coordinates_user: "coordinates",
+        permisos_user: "permisos"
     }
 }  
     

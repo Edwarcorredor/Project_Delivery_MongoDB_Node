@@ -3,6 +3,9 @@ import ControllerCrud from "../controllers/ControllerCrud.js";
 import { checkRoles } from "../middlewares/auth.middleware.js";
 import passport from "passport";
 import RestauranteCrll from "../controllers/RestauranteController.js";
+import routesVersioning  from 'express-routes-versioning';
+
+const version = routesVersioning();
 
 const restauranteRouter = Router();
 

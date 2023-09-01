@@ -79,40 +79,54 @@ db.createCollection("repartidor", {
   },
 });
 
-use("rappi_campus");
+
 db.createCollection("users", {
-  validator: {
-    $jsonSchema: {
-      bsonType: "object",
-      required: ["username", "email", "password"],
-      properties: {
-        username: {
-          bsonType: "string",
-          description: "Nombre de usuario",
-        },
-        email: {
-          bsonType: "string",
-          description: "Dirección de correo electrónico del usuario.",
-        },
-        password: {
-          bsonType: "string",
-          description: "Contraseña del usuario.",
-        },
-        coordinates: {
-          bsonType: "array",
-          description: "Coordenadas de la ubicación",
-          items: {
-            bsonType: "number",
+    validator: {
+      $jsonSchema: {
+        bsonType: "object",
+        required: ["username", "email", "password", "permisos"],
+        properties: {
+          username: {
+            bsonType: "string",
+            description: "Nombre de usuario",
           },
-        },
-        role: {
-          bsonType: "string",
-          description: "Rol de usuario",
+          email: {
+            bsonType: "string",
+            description: "Dirección de correo electrónico del usuario.",
+          },
+          password: {
+            bsonType: "string",
+            description: "Contraseña del usuario.",
+          },
+          coordinates: {
+            bsonType: "array",
+            description: "Coordenadas de la ubicación",
+            items: {
+              bsonType: "number",
+            },
+          },
+          role: {
+            bsonType: "string",
+            description: "Rol de usuario",
+          },
+          permisos: {
+            bsonType: "array",
+              items: {
+                  bsonType: "string",
+                  description: "Ingrese la version autorizada",
+              }
+          }
         },
       },
     },
-  },
-});
+  });
+  
+  
+  
+  
+   
+  
+  
 
 // Esquema para restaurante
 db.createCollection("restaurante", {
@@ -221,40 +235,7 @@ db.createCollection("pedido", {
   },
 });
 
-db.createCollection("user",{
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: [
-                "_id",
-                "nombre",
-                "email",
-                "password",
-                "role"
-            ],
-            properties: {
-                _id: {
-                    bsonType: "int",
-                    description: "ID del user"
-                },
-                email: {
-                    bsonType: "string",
-                    description: "email del usuario"
-                },
-                password: {
-                    bsonType: "string",
-                    description: "password del usuario"
-                },
 
-                role: {
-                    bsonType: "string",
-                    enum: ["repartidor", "cliente", "vendedor", "user"],
-                    description: "role actual del usuario"
-                }
-            }
-        }
-    }
-});
 
 use("rappi_campus");
 db.createCollection("counters");

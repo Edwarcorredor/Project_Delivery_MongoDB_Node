@@ -2,7 +2,9 @@ import { Router } from "express";
 import ControllerCrud from "../controllers/ControllerCrud.js";
 import passport from "passport";
 import { checkRoles } from "../middlewares/auth.middleware.js";
+import routesVersioning  from 'express-routes-versioning';
 
+const version = routesVersioning();
 const productoRouter = Router();
 productoRouter
   .use(passport.authenticate("jwt", { session: false }))

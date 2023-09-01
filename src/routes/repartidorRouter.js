@@ -2,7 +2,9 @@ import { Router } from "express";
 import ControllerCrud from "../controllers/ControllerCrud.js";
 import { checkRoles } from "../middlewares/auth.middleware.js";
 import passport from "passport";
+import routesVersioning  from 'express-routes-versioning';
 
+const version = routesVersioning();
 const repartidorRouter = Router();
 
 repartidorRouter
