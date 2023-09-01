@@ -26,33 +26,27 @@ class ControllerUser {
     res.json(result);
   }
 
-  static async updateDocument(req, res) {
-    const validacion = schemas[req.baseUrl.slice(1, -1)].safeParse(req.body);
-    if (!validacion.success)
-      return res
-        .status(400)
-        .json({
-          message: validacion.error.errors.map(
-            (error) => `${error.path} - ${error.message}`
-          ),
-        });
-
-    const result = await ModelCrud.updateDocument(
-      req.baseUrl.slice(1, -1), // colecion
-      funMapping(validacion.data, req.baseUrl.slice(1, -1)), // data
-      parseInt(req.params.id)  // param id
-    );
-
-    if (result.status)
+  static async updateUser(req, res) {
+    const {sub} = req.user
+    const validacion = userShema.safeParse(req.body);
+    if (!validacion.success) {
+      return res.status(400).json({
+        message: validacion.error.errors.map(
+          (error) => `${error.path} - ${error.message}`
+        ),
+      });
+    }
+    const transforUser = funMapping(validacion.data, sub);
+    const result = await ModelUser.updateUser(transforUser, req);
+    if (!result.status){
       return res.status(result.status).json({ message: result.message });
+    }
     res.json(result);
   }
 
-  static async deleteDocument(req, res) {
-    const result = await ModelCrud.deleteDocument(
-      req.baseUrl.slice(1, -1),
-      parseInt(req.params.id)
-    );
+  static async deleteUser(req, res) {
+    const {sub} = req.user
+    const result = await ModelUser.deleteUser(sub);
     if (result.status)
       return res.status(result.status).json({ message: result.message });
     res.json(result);

@@ -27,21 +27,21 @@ class ModelUser {
         }     
     }
 
-    static async updateDocument(collection,datos, ID){
+    static async updateUser(datos, ID){
         try{
             const filter = {_id: ID}
             const update = {$set: datos}
-            const result = await db.collection(collection).updateOne(filter, update);
+            const result = await User.updateOne(filter, update);
             return result;
         }catch(error){
             return {status: 400, message: error.message};
         }
     }
 
-    static async deleteDocument(collection,ID){
+    static async deleteUser(ID){
         try{
             const filter = {_id: ID}
-            const result = await db.collection(collection).deleteOne(filter);
+            const result = await User.deleteOne(filter);
             return result;
         }catch(error){
             return {status: 400, message: error.message};
