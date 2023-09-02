@@ -159,7 +159,7 @@ db.createCollection("pedido", {
 
 
 
-use("rappi_campus");
+
 db.createCollection("counters");
 db.counters.insertMany([
   { _id: "restaurante", seq: 0 },
@@ -167,3 +167,4 @@ db.counters.insertMany([
   { _id: "pedido", seq: 0 },
   { _id: "users", seq: 0 },
 ]);
+
