@@ -15,7 +15,8 @@ const productoSchema = z.object({
     nombre_producto: z.string().min(1),
     descripcion_producto: z.string().min(1),
     precio_producto: z.number().min(0, "El precio debe ser mayor o igual a cero"),
-    restaurante_producto: z.number().int().positive("El ID del restaurante asociado al producto debe ser un número positivo")
+    restaurante_producto: z.number().int().positive("El ID del restaurante asociado al producto debe ser un número positivo"),
+    stock_producto: z.number().min(1, "El stock debe ser mayor a 0")
 });
 
 // Esquema para pedido 

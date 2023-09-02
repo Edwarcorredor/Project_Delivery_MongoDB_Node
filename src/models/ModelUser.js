@@ -13,30 +13,40 @@ class ModelUser {
         try{
             const checkEmail = await User.findOne({ email: datos.email });
             if (checkEmail) {
-                return res.status(401).json({ msg: "correo ya registrado" });
+                return "Correo ya registrado"
             }
             const userInsert = await User.insertOne({
                 _id: await getNextSequenceValue(db, "users"),
                 ...datos,
                 password: await hash(datos.password, 10),
             });
-            res.status(200).json({ ok: true, insert: userInsert });
+            return userInsert;
         }catch (error) {
             console.log("🚀 ~ file: user.controller.js:14 ~ userPost ~ error:", error);
-            res.status(500).json({ ok: false, msg: error });
+            return error 
         }     
     }
 
     static async updateUser(datos, ID){
         try{
-            const filter = {_id: ID}
-            const update = {$set: datos}
+
+            const existingEmail = await User.findOne({ email: datos.email, _id: { $ne: ID } });
+    
+            if (existingEmail) {
+                return "Correo ya registrado";
+            }
+    
+            const filter = { _id: ID };
+            datos.password = await hash(datos.password, 10);
+            const update = { $set: datos };
             const result = await User.updateOne(filter, update);
+    
             return result;
-        }catch(error){
-            return {status: 400, message: error.message};
+        } catch(error){
+            return { status: 400, message: error.message };
         }
     }
+    
 
     static async deleteUser(ID){
         try{

@@ -10,7 +10,8 @@ const mapping = {
         nombre_producto: "nombre",
         descripcion_producto: "descripcion",
         precio_producto: "precio",
-        restaurante_producto: "restaurante"
+        restaurante_producto: "restaurante",
+        stock_producto: "stock"
     },
     pedido: {
         cliente_pedido: "id_cliente",

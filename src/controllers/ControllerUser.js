@@ -20,9 +20,6 @@ class ControllerUser {
     }
     const transforUser = funMapping(validacion.data, "user");
     const result = await ModelUser.setUser(transforUser);
-    if (!result.status){
-      return res.status(result.status).json({ message: result.message });
-    } 
     res.json(result);
   }
 
@@ -38,17 +35,12 @@ class ControllerUser {
     }
     const transforUser = funMapping(validacion.data, "user");
     const result = await ModelUser.updateUser(transforUser, sub);
-    if (!result.status){
-      return res.status(result.status).json({ message: result.message });
-    }
-    res.json(result);
+    res.status(200).json(result);
   }
 
   static async deleteUser(req, res) {
     const {sub} = req.user
     const result = await ModelUser.deleteUser(sub);
-    if (result.status)
-      return res.status(result.status).json({ message: result.message });
     res.json(result);
   }
 }
