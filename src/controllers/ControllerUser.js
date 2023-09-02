@@ -35,7 +35,7 @@ class ControllerUser {
     }
     const transforUser = funMapping(validacion.data, "user");
     const result = await ModelUser.updateUser(transforUser, sub);
-    res.json(result);
+    res.status(200).json(result);
   }
 
   static async deleteUser(req, res) {
