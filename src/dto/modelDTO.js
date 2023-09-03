@@ -21,10 +21,10 @@ const productoSchema = z.object({
 
 // Esquema para pedido 
 const pedidoSchema = z.object({
-    cliente_pedido: z.number().int().positive("El ID del cliente debe ser un número positivo"),
     productos_pedido: z.array(z.number().int().positive("El ID de producto debe ser un número positivo")).min(1, "Debe haber al menos un producto en el pedido"),
     total_pedido: z.number().min(0, "El total debe ser mayor o igual a cero"),
-    estado_pedido: z.enum(["pendiente", "en_proceso", "entregado"])
+    estado_pedido: z.enum(["pendiente", "en_proceso", "entregado"]),
+    id_restaurante_pedido: z.number().min(0, "id pedido deber mayor o igual a cero")
 });
 
 // Esquema para user
