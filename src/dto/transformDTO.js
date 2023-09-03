@@ -14,10 +14,10 @@ const mapping = {
         stock_producto: "stock"
     },
     pedido: {
-        cliente_pedido: "id_cliente",
         productos_pedido: "productos",
         total_pedido: "total",
-        estado_pedido: "estado"
+        estado_pedido: "estado",
+        id_restaurante_pedido: "id_restaurante"
     },
     user: {
         nombre_user: "username",

@@ -1,51 +1,57 @@
 use("rappi_campus");
 
-
 db.createCollection("users", {
-    validator: {
-      $jsonSchema: {
-        bsonType: "object",
-        required: ["username", "email", "password", "permisos", "telefono", "role"],
-        properties: {
-          username: {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: [
+        "username",
+        "email",
+        "password",
+        "permisos",
+        "telefono",
+        "role",
+      ],
+      properties: {
+        username: {
+          bsonType: "string",
+          description: "Nombre de usuario",
+        },
+        email: {
+          bsonType: "string",
+          description: "Dirección de correo electrónico del usuario.",
+        },
+        password: {
+          bsonType: "string",
+          description: "Contraseña del usuario.",
+        },
+        coordinates: {
+          bsonType: "array",
+          description: "Coordenadas de la ubicación",
+          items: {
+            bsonType: "number",
+          },
+        },
+        role: {
+          bsonType: "string",
+          description: "Rol de usuario",
+        },
+        permisos: {
+          bsonType: "array",
+          items: {
             bsonType: "string",
-            description: "Nombre de usuario",
+            description: "Ingrese la version autorizada",
           },
-          email: {
-            bsonType: "string",
-            description: "Dirección de correo electrónico del usuario.",
-          },
-          password: {
-            bsonType: "string",
-            description: "Contraseña del usuario.",
-          },
-          coordinates: {
-            bsonType: "array",
-            description: "Coordenadas de la ubicación",
-            items: {
-              bsonType: "number",
-            },
-          },
-          role: {
-            bsonType: "string",
-            description: "Rol de usuario",
-          },
-          permisos: {
-            bsonType: "array",
-              items: {
-                  bsonType: "string",
-                  description: "Ingrese la version autorizada",
-              }
-          },
-          telefono: {
-            bsonType: "string",
-            description: "Teléfono del repartidor",
-          },
+        },
+        telefono: {
+          bsonType: "string",
+          description: "Teléfono del repartidor",
         },
       },
     },
-  });
-  
+  },
+});
+
 // Esquema para restaurante
 db.createCollection("restaurante", {
   validator: {
@@ -90,7 +96,14 @@ db.createCollection("producto", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["_id", "nombre", "descripcion", "precio", "restaurante", "stock"],
+      required: [
+        "_id",
+        "nombre",
+        "descripcion",
+        "precio",
+        "restaurante",
+        "stock",
+      ],
       properties: {
         _id: {
           bsonType: "int",
@@ -112,10 +125,10 @@ db.createCollection("producto", {
           bsonType: "int",
           description: "ID del restaurante asociado al producto",
         },
-        stock:{
+        stock: {
           bsonType: "int",
-          description: "Cantidad existente del producto en el restaurante"
-        }
+          description: "Cantidad existente del producto en el restaurante",
+        },
       },
     },
   },
@@ -131,6 +144,10 @@ db.createCollection("pedido", {
         _id: {
           bsonType: "int",
           description: "ID del pedido",
+        },
+        id_restaurante: {
+          bsonType: "int",
+          description: "ID del restaurante que hizo el pedido",
         },
         id_cliente: {
           bsonType: "int",
@@ -157,9 +174,6 @@ db.createCollection("pedido", {
   },
 });
 
-
-
-
 db.createCollection("counters");
 db.counters.insertMany([
   { _id: "restaurante", seq: 0 },
@@ -167,4 +181,3 @@ db.counters.insertMany([
   { _id: "pedido", seq: 0 },
   { _id: "users", seq: 0 },
 ]);
-
