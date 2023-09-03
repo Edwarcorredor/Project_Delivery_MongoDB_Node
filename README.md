@@ -78,7 +78,7 @@ Content-Type: application/json
 Authorization: bearer [Token de Acceso Generado]
 ```
 
-![conexionthunder](C:\Users\eddac\Documents\CAMPUS 2023\Rappi_Campus\docs\conexionthunder.png)
+<img width="350" alt="conexionthunder" src="https://github.com/Edwarcorredor/Rappi_Campus/assets/104398132/f1c068ce-018f-430d-aea7-f273a1551388">
 
 ### Obtener información de un usuario autenticado
 
@@ -174,7 +174,7 @@ Se debe enviar en los parámetros el id del producto que desea eliminar
 DELETE /productos/borrar/:id
 ```
 
-Autor: Edwar Danilo Corredor Amaya
+## Autor: Edwar Danilo Corredor Amaya
 
 
 
