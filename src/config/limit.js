@@ -8,7 +8,7 @@ export const limitPet = ()=>{
         message: (req,res)=>{
             res.status(429).send({
                 status: 429, 
-                message: "Limite alcanzado"
+                message: "Limite de peticiones alcanzado"
             });
         }
     })    
@@ -23,7 +23,7 @@ export const limitLogin = ()=>{
         message: (req,res)=>{
             res.status(429).send({
                 status: 429, 
-                message: "Limite alcanzado"
+                message: "Limite de login alcanzado"
             });
         }
     })    

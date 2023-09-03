@@ -3,11 +3,7 @@ import { MongoClient } from 'mongodb';
 dotenv.config("../");
 export async function conexion() {
   try {
-    const user = ""
-    const password = ""
-    const dbName = ""
-    const cluster = ""
-    const uri = `mongodb+srv://${user}:${password}@${cluster}.kyfguog.mongodb.net/${dbName}`;
+    const uri = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@edwarcorredor.zavkvu2.mongodb.net/${process.env.ATLAS_DB}`;
     const options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -18,4 +14,5 @@ export async function conexion() {
     return {status: 500, message: error};
   }
 }
+
 
