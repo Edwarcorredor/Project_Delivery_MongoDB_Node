@@ -28,7 +28,8 @@ class ModelProducto {
     static async updateProduct(datos, id, id_producto){
         try{
             const consulta = await Restaurante.findOne({_id:datos.restaurante, id_tendero: id});
-            if(!consulta){
+            const consulta2 = await Product.findOne({_id:id_producto, restaurante: datos.restaurante});
+            if(!consulta || !consulta2){
                 return "El restaurante_producto no corresponde al Rappi tendero"
             }
             const filter = {_id: id_producto}
