@@ -25,6 +25,7 @@ El proyecto Rappi se centra en el desarrollo de una plataforma de entrega y pedi
 - **Cliente:** Los clientes pueden realizar pedidos en restaurantes y hacer un seguimiento del estado de sus pedidos.
 - **Repartidor:** Los repartidores reciben pedidos y entregan productos a los clientes.
 
+![Untitled-2023-09-04-1516](https://github.com/Edwarcorredor/Rappi_Campus/assets/104398132/43ab51e5-ff32-46f7-a929-9de3e642eff6)
 
 
 ## *Instalación*
