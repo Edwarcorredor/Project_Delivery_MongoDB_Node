@@ -5,7 +5,7 @@ import funMapping from "../dto/transformDTO.js";
 class ControllerProductos{
     static async getProduct(req, res) {
         const id_restaurante = parseInt(req.params.id);
-        res.send(await ModelProducto.getProduct(id_restaurante));
+        res.json(await ModelProducto.getProduct(id_restaurante));
     }
 
     static async setProducto(req, res) {
@@ -20,7 +20,7 @@ class ControllerProductos{
         }
         const transforProduct = funMapping(validacion.data, "producto");
         const result = await ModelProducto.setProduct(transforProduct, sub);
-        res.send(result);
+        res.json(result);
     }
 
     static async updateProduct(req, res) {
