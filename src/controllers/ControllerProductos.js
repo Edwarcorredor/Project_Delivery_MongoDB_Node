@@ -20,7 +20,7 @@ class ControllerProductos{
         }
         const transforProduct = funMapping(validacion.data, "producto");
         const result = await ModelProducto.setProduct(transforProduct, sub);
-        res.json(result);
+        res.send(result);
     }
 
     static async updateProduct(req, res) {

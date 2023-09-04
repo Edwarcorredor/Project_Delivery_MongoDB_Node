@@ -47,14 +47,12 @@ class ModelProducto {
             if (!product) {
                 return res.status(500).send("No existe el producto");
             }
-    
             const restaurante = await Restaurante.findOne({
                 _id: product.restaurante,
                 id_tendero: id
             });
-    
             if (!restaurante) {
-                return res.status(500).send("El producto no corresponde a las tiendas del rappi tendero");
+                return "El producto no corresponde a las tiendas del rappi tendero";
             }
     
             const filter = { _id: id_producto };
