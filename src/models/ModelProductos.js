@@ -13,7 +13,7 @@ class ModelProducto {
         try{   
             const consulta = await Restaurante.findOne({_id:datos.restaurante, id_tendero: id});
             if(!consulta){
-                return "El restaurante_producto no corresponde al Rappi tendero"
+                return {message: "El restaurante_producto no corresponde al Rappi tendero"}
             }
             const productInsert = await Product.insertOne({
                 _id: await getNextSequenceValue(db, "producto"),
@@ -30,7 +30,7 @@ class ModelProducto {
             const consulta = await Restaurante.findOne({_id:datos.restaurante, id_tendero: id});
             const consulta2 = await Product.findOne({_id:id_producto, restaurante: datos.restaurante});
             if(!consulta || !consulta2){
-                return "El restaurante_producto no corresponde al Rappi tendero"
+                return { message: "El restaurante_producto no corresponde al Rappi tendero"}
             }
             const filter = {_id: id_producto}
             const update = {$set: datos}
@@ -46,14 +46,14 @@ class ModelProducto {
             const product = await Product.findOne({_id: id_producto});
     
             if (!product) {
-                return res.status(500).send("No existe el producto");
+                return {message: "No existe el producto"};
             }
             const restaurante = await Restaurante.findOne({
                 _id: product.restaurante,
                 id_tendero: id
             });
             if (!restaurante) {
-                return "El producto no corresponde a las tiendas del rappi tendero";
+                return {message:"El producto no corresponde a las tiendas del rappi tendero"};
             }
     
             const filter = { _id: id_producto };

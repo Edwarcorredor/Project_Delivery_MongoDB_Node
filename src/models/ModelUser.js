@@ -13,7 +13,7 @@ class ModelUser {
         try{
             const checkEmail = await User.findOne({ email: datos.email });
             if (checkEmail) {
-                return "Correo ya registrado"
+                return {message:"Correo ya registrado"}
             }
             const userInsert = await User.insertOne({
                 _id: await getNextSequenceValue(db, "users"),
@@ -33,7 +33,7 @@ class ModelUser {
             const existingEmail = await User.findOne({ email: datos.email, _id: { $ne: ID } });
     
             if (existingEmail) {
-                return "Correo ya registrado";
+                return {message:"Correo ya registrado"};
             }
     
             const filter = { _id: ID };
