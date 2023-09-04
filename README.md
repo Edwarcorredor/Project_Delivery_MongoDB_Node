@@ -213,7 +213,7 @@ Rappi es una plataforma de entrega a domicilio y servicios en línea que ofrece 
 9. RappiPrime y Suscripciones:
    - RappiPrime es un programa de suscripción que ofrece beneficios como envío gratuito, descuentos y promociones exclusivas
 
-## docuemtnacion de los endpoints:
+## documentacion de los endpoints de pedidos, restaurantes y algunos de productos:
 
 - https://documenter.getpostman.com/view/21399364/2s9Y5Zu1pk
 
