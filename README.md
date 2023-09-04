@@ -146,7 +146,8 @@ Content-Type: application/json
   "nombre_producto": "Nombre del Producto",
   "descripcion_producto": "Descripción del Producto",
   "precio_producto": 10.99,
-  "restaurante_producto": 1
+  "restaurante_producto": 1,
+  "stock_producto": 10
 }
 ```
 
@@ -162,7 +163,8 @@ Content-Type: application/json
   "nombre_producto": "Nuevo Nombre",
   "descripcion_producto": "Nueva Descripción",
   "precio_producto": 15.99,
-  "restaurante_producto": 2
+  "restaurante_producto": 2,
+  "stock_producto": 10
 }
 ```
 
